@@ -1,0 +1,29 @@
+.card{
+    width : 80%;
+    height : 25vh;
+    border : 2px solid grey;
+    box-shadow: 1px 1px 1px 1px grey;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.buttonParent {
+    width : 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.button {
+    text-align: center;
+    padding: 0.5rem;
+    margin: 1rem;
+    color : white;
+    background-color: lightseagreen;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button:hover {
+    color : darkgreen;
+    background-color: white;
+}

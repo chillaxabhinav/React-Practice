@@ -1,0 +1,40 @@
+.mynav{
+    background-color: rgb(107, 185, 221);
+    width: 100%;
+}
+
+.mynav h1{
+    vertical-align: middle;
+    margin : 0;
+    display: inline-block;
+    margin-left : 2vw;
+}
+
+.mynav h1 a{
+    color : black;
+    text-decoration: none;
+}
+
+.mynav ul {
+    list-style: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left : 70vw;
+}
+
+.mynav ul li {
+    position: relative;
+    display: inline-block;
+    margin-left : 2rem;
+}
+
+.mynav ul li a{
+    font-size: 1.2rem;
+    color : darkblue;
+    text-decoration: none;
+}
+
+.mynav ul li a:hover {
+    color: white;
+    text-decoration: underline;
+}
