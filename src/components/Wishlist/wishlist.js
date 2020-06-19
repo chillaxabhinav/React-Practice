@@ -25,7 +25,7 @@ export default class wishlist extends Component {
         this.componentDidMount();
     }
 
-    
+
     addToCartHandler = (e, id) => {
         let wishlist;
         wishlist = JSON.parse(localStorage.getItem('wishlist'));
@@ -76,7 +76,7 @@ export default class wishlist extends Component {
         else {
             content = this.state.wishlist.map(ele => {
                 return (
-                    <div key={ele.id}>
+                    <div key={ele.id} className={styles.itemContainer}>
                         <label>Title - </label>{ele.title}<br />
                         <button onClick={(event) => this.removeHandler(event, ele.id)}>Remove</button>
                         <button onClick={(event) => this.addToCartHandler(event, ele.id)}>Add to Cart</button>

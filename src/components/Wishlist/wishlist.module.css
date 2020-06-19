@@ -1,0 +1,21 @@
+.itemContainer {
+    background:  rgb(223, 222, 222);
+    width : 80%;
+    border-radius: 5px;
+    padding: 0.8rem;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.itemContainer label{
+    font-weight: bold;
+    font-size: 1.0rem;
+}
+
+.itemContainer button{
+    background-color: lightseagreen;
+    color : white;
+    font-size: 1.2rem;
+    margin : 1rem 1.3rem 0 0.8rem;
+    border-radius: 5px;
+}
