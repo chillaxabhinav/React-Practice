@@ -62,7 +62,7 @@ class Products extends Component {
     }
     
     onCheckChanged(e){
-        console.log(e);
+        const eventChecked = e.target.checked;
         let filterProducts;
         if(!this.state.filter){
             this.setState((prevState) => {
@@ -70,7 +70,7 @@ class Products extends Component {
                 filterProducts.sort(this.compare);
                 return {
                     products : filterProducts,
-                    filter : true
+                    filter : eventChecked
                 }
             });
         }
@@ -104,7 +104,7 @@ class Products extends Component {
                 </div>
                 <h1 style={{textAlign:"center"}}>Products</h1>
                 <div className={styles.filter}>
-                    <label>Filter - </label><input type="checkbox" name="titleFilter" checked={this.state.filter} onChange={() => this.onCheckChanged()} /> Title Name
+                    <label>Filter - </label><input type="checkbox" name="titleFilter" checked={this.state.filter} onChange={(event) => this.onCheckChanged(event)} /> Title Name
                 </div>
                 {content}
             </section>
