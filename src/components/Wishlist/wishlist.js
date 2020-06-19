@@ -15,6 +15,7 @@ export default class wishlist extends Component {
     }
 
 
+
     removeHandler = (e, id) => {
         let wishlist;
         wishlist = JSON.parse(localStorage.getItem('wishlist'));
@@ -24,6 +25,7 @@ export default class wishlist extends Component {
         this.componentDidMount();
     }
 
+    
     addToCartHandler = (e, id) => {
         let wishlist;
         wishlist = JSON.parse(localStorage.getItem('wishlist'));
