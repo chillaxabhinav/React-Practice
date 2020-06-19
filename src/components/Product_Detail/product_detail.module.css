@@ -2,3 +2,12 @@
     width : 40%;
     margin : 6rem auto;
 }
+
+.myCard a{
+    display: none;
+}
+
+.outer{
+    display: inline;
+    text-align: center;
+}

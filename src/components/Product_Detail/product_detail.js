@@ -45,7 +45,7 @@ const ProductDetail = (props) => {
     
     else{
         return (
-            <div>
+            <div className={styles.outer}>
                 <h1 style={{ textAlign: "center" }}>Product Detail</h1>
                 <div className={styles.myCard}>
                     <Card title={currentState.productData.title} />
