@@ -14,9 +14,9 @@ class Products extends Component {
         loading : false,
         filter : false,
         productsShown : [],
-        productPerPage : 5,
+        productPerPage : 3,
         pageNumber : 1,
-        itemstoShow : 5,
+        itemstoShow : 3,
         start : 0
     }
 
