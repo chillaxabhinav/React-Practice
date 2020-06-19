@@ -24,7 +24,6 @@ const ProductDetail = (props) => {
                     productData : productData,
                     loading : false
                 });
-                console.log(currentState);
             }
             catch{
                 return (

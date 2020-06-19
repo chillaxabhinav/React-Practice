@@ -2,6 +2,7 @@ import {Component} from 'react';
 import React from 'react';
 
 import Card from '../Card/card';
+
 import styles from './product.module.css';
 
 import axios from 'axios';
@@ -10,13 +11,17 @@ import axios from 'axios';
 class Products extends Component {
     state = {
         products : [],
-        loading : false
+        loading : false,
+        filter : false
     }
 
     componentDidMount(){
         if(!this.state.loading){
-            this.setState({
-                loading : true
+            this.setState((prevState) => {
+                return {
+                    loading : !prevState.loading,
+                    filter : false
+                }
             });
         }
         axios.get('https://jsonplaceholder.typicode.com/albums')
@@ -29,16 +34,50 @@ class Products extends Component {
                 for(let i=0;i < 10; i++){
                     tenProducts.push(result[i]);
                 }
-                this.setState({
-                    products : tenProducts,
-                    loading : false
+                this.setState((prevState) => {
+                    return {
+                        products: tenProducts,
+                        loading: !prevState.loading,
+                        filter : false
+                    }
                 });
                 console.log('State set');
             })
             .catch(err => {
                 console.log(err);
             })
-    }       
+    }
+
+    compare(a, b) {
+        const titleA = a.title.toUpperCase();
+        const titleB = b.title.toUpperCase();
+
+        let comparison = 0;
+        if (titleA > titleB) {
+            comparison = 1;
+        } else if (titleA < titleB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+    
+    onCheckChanged(e){
+        console.log(e);
+        let filterProducts;
+        if(!this.state.filter){
+            this.setState((prevState) => {
+                filterProducts = prevState.products.slice();
+                filterProducts.sort(this.compare);
+                return {
+                    products : filterProducts,
+                    filter : true
+                }
+            });
+        }
+        else{
+            this.componentDidMount();
+        }
+    }
 
     render() {
         let content;
@@ -64,6 +103,9 @@ class Products extends Component {
                     <label style={{ fontWeight: "bold", fontSize: "1.2rem", verticalAlign: "middle" }}>Search - </label><input type="text" className={styles.search}></input>
                 </div>
                 <h1 style={{textAlign:"center"}}>Products</h1>
+                <div className={styles.filter}>
+                    <label>Filter - </label><input type="checkbox" name="titleFilter" checked={this.state.filter} onChange={() => this.onCheckChanged()} /> Title Name
+                </div>
                 {content}
             </section>
         )

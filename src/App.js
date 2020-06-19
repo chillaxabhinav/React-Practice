@@ -26,7 +26,7 @@ function App() {
                     right : '30px',
                     cursor : "pointer",
                     textDecoration : "none",
-                }}><NavLink to="/cart" className="myFixButton">Shop Logo</NavLink></button>
+                }}><NavLink to="/cart" className="myFixButton">Cart</NavLink></button>
             </div>
         </BrowserRouter>
     );
