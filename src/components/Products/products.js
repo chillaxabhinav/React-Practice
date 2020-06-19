@@ -14,9 +14,9 @@ class Products extends Component {
         loading : false,
         filter : false,
         productsShown : [],
-        productPerPage : 3,
+        productPerPage : 5,
         pageNumber : 1,
-        itemstoShow : 3,
+        itemstoShow : 5,
         start : 0
     }
 
@@ -153,8 +153,8 @@ class Products extends Component {
         let something = this.state.productPerPage * (id-1);
         let toBeShown = this.state.products.length - something;
         let final;
-        if(toBeShown > 3){
-            final = 3;
+        if(toBeShown > this.state.productPerPage){
+            final = this.state.productPerPage;
         }
         else{
             final = toBeShown;
