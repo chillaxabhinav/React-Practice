@@ -26,3 +26,8 @@
     color : darkgreen;
     background-color: white;
 }
+
+.button:active{
+    color : white;
+    background-color: darkcyan;
+}

@@ -19,11 +19,9 @@ export default class Cart extends Component {
         cart = JSON.parse(localStorage.getItem('cart'));
         let myItem = cart.find(ele => ele.id === id);
         let quantity = myItem.quantity;
-        console.log(myItem, quantity);
         if(myItem.quantity === 1){
             localStorage.removeItem('cart');
             let newCart = cart.filter(ele => ele.id!==id);
-            console.log(newCart);
             localStorage.setItem('cart',JSON.stringify(newCart));
         }
         else if (myItem.quantity >= 2) {
@@ -60,9 +58,9 @@ export default class Cart extends Component {
         else{
             content = this.state.cart.map(ele => {
                         return (
-                                <div key={ele.id} style={styles.ItemContainer}>
-                                    <label>Title - {ele.title}</label><br />
-                                    <label>Quantity - {ele.quantity}   </label>
+                                <div key={ele.id} className={styles.itemContainer}>
+                                    <label>Title - </label>{ele.title}<br />
+                                    <label>Quantity - </label>{ele.quantity}<br/>
                                     <label>Increase Quantity </label><button onClick={(event) => this.incrementHandler(event, ele.id)}>+</button>
                                     <label>Decrease Quantity </label><button onClick={(event) => this.decrementHandler(event, ele.id)}> - </button>
                                 </div>
