@@ -13,6 +13,11 @@ class Products extends Component {
         products : [],
         loading : false,
         filter : false,
+        productsShown : [],
+        productPerPage : 3,
+        pageNumber : 1,
+        itemstoShow : 3,
+        start : 0
     }
 
     componentDidMount(){
@@ -20,7 +25,8 @@ class Products extends Component {
             this.setState((prevState) => {
                 return {
                     loading : !prevState.loading,
-                    filter : false
+                    filter : false,
+                    pageNumber : 1
                 }
             });
         }
@@ -38,7 +44,8 @@ class Products extends Component {
                     return {
                         products: tenProducts,
                         loading: !prevState.loading,
-                        filter : false
+                        filter : false,
+                        pageNumber : 1
                     }
                 });
                 console.log('State set');
@@ -142,8 +149,30 @@ class Products extends Component {
         }
     }
 
+    pageChangeHandler = (e, id) => {
+        let something = this.state.productPerPage * (id-1);
+        let toBeShown = this.state.products.length - something;
+        let final;
+        if(toBeShown > 3){
+            final = 3;
+        }
+        else{
+            final = toBeShown;
+        }
+        this.setState({
+            pageNumber : id,
+            itemstoShow : final,
+            start : something
+        });
+    }
+
     render() {
 
+        const numberOfPages = Math.ceil(this.state.products.length / this.state.productPerPage);
+        let helper = [];
+        for(let i=0; i< numberOfPages; i++){
+            helper.push(i+1);
+        }
 
 
         let content;
@@ -153,15 +182,16 @@ class Products extends Component {
             )
         }
         else{
+            let myarr = this.state.products.slice(this.state.start, this.state.start + this.state.itemstoShow);
             content = (<div>
-                            {this.state.products.map((ele) => {
-                                return (
-                                    <div className={styles.perCard} key={ele.id}>
-                                        <Card title={ele.title} cardId={ele.id} onAddToCart={(event) => this.onAddToCart(event, ele.id)} onAddToWishlist={(event) => this.onAddToWishlist(event, ele.id)}/>
-                                    </div>
-                                )
-                            })}
-                        </div>)
+                    {myarr.map(ele => {
+                        return (
+                            <div key={ele.id} className={styles.perCard}>
+                                <Card title={ele.title} cardId={ele.id} onAddToCart={(event) => this.onAddToCart(event, ele.id)} onAddToWishlist={(event) => this.onAddToWishlist(event, ele.id)} />
+                            </div>
+                        )
+                    })}
+            </div>)
         }
         return (
             <section>
@@ -170,6 +200,13 @@ class Products extends Component {
                     <label>Filter - </label><input type="checkbox" name="titleFilter" checked={this.state.filter} onChange={(event) => this.onCheckChanged(event)} /> Title Name
                 </div>
                 {content}
+                <div style={{textAlign : "center"}} className={styles.paginate}>
+                    {helper.map((ele) => {
+                        return (
+                            <button key={ele} onClick={(event) => this.pageChangeHandler(event, ele)}>{ele}</button>
+                        )
+                    })}
+                </div>
             </section>
             
         )
