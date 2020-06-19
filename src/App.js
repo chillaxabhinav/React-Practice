@@ -3,6 +3,7 @@ import "./App.css";
 import Nav from './components/Navigation/navigation';
 import Products from './components/Products/products';
 import Product_Detail from './components/Product_Detail/product_detail';
+import Cart from './components/Cart/cart';
 
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 
@@ -13,7 +14,8 @@ function App() {
 				<Nav/>
 				<Switch>
 					<Route path="/" exact component={Products}></Route>
-                    <Route path="/:id" component={Product_Detail}></Route>
+                    <Route path="/cart" exact component={Cart}></Route>
+                    <Route path="/:id" exact component={Product_Detail}></Route>
 				</Switch>
                 <button style={{
                     width : "4rem",

@@ -4,7 +4,6 @@
     border : 2px solid grey;
     box-shadow: 1px 1px 1px 1px grey;
     display: inline-block;
-    cursor: pointer;
 }
 
 .buttonParent {

@@ -12,7 +12,7 @@ class Products extends Component {
     state = {
         products : [],
         loading : false,
-        filter : false
+        filter : false,
     }
 
     componentDidMount(){
@@ -79,7 +79,47 @@ class Products extends Component {
         }
     }
 
+    onAddToCart = (e, id) => {
+        const myData = localStorage.getItem('cart');
+        let myItemInCart;
+        if(myData){
+            const data = JSON.parse(myData);
+            localStorage.removeItem('cart');
+            myItemInCart = data.find(ele => ele.id === id);
+            if(myItemInCart){
+                myItemInCart.quantity++;
+            }
+            localStorage.setItem('cart',JSON.stringify(data));
+        }
+        if(!myItemInCart && myData){
+            const data = JSON.parse(myData);
+            localStorage.removeItem('cart');
+            let myItem = this.state.products.find(ele => ele.id === id);
+            let updatedItem = {
+                ...myItem,
+                quantity : 1
+            }
+            data.push(updatedItem);
+            localStorage.setItem('cart', JSON.stringify(data));
+            return;
+        }
+        if(myData === null){
+            let cart = [];
+            let myItem = this.state.products.find(ele => ele.id === id);
+            let updatedItem = {
+                ...myItem,
+                quantity: 1
+            }
+            cart.push(updatedItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+    }
+
     render() {
+
+
+
         let content;
         if(this.state.loading){
             content = (
@@ -91,7 +131,7 @@ class Products extends Component {
                             {this.state.products.map((ele) => {
                                 return (
                                     <div className={styles.perCard} key={ele.id}>
-                                        <Card title={ele.title} cardId={ele.id} />
+                                        <Card title={ele.title} cardId={ele.id} onAddToCart={(event) => this.onAddToCart(event, ele.id)}/>
                                     </div>
                                 )
                             })}
@@ -108,6 +148,7 @@ class Products extends Component {
                 </div>
                 {content}
             </section>
+            
         )
     }
 }

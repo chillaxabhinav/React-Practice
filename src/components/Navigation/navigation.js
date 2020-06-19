@@ -10,7 +10,6 @@ const Nav = (props) => {
                 <h1><Link to="/">Platform</Link></h1>
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/wishlist">Wishlist</Link></li>
                 </ul>
             </nav>
         </section>
