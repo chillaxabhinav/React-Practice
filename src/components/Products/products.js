@@ -116,6 +116,32 @@ class Products extends Component {
         
     }
 
+    onAddToWishlist(e, id){
+        const myData = localStorage.getItem('wishlist');
+        let myItemInCart;
+        if (myData) {
+            const data = JSON.parse(myData);
+            console.log(data);
+            myItemInCart = data.find(ele => ele.id === id);
+            if(myItemInCart){
+                return;
+            }
+            else{
+                localStorage.removeItem('wishlist');
+                let myItem = this.state.products.find(ele => ele.id === id);
+                data.push(myItem);
+                localStorage.setItem('wishlist', JSON.stringify(data));
+                return;
+            }
+        }
+        else {
+            let wishlist = [];
+            let myItem = this.state.products.find(ele => ele.id === id);
+            wishlist.push(myItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+    }
+
     render() {
 
 
@@ -131,7 +157,7 @@ class Products extends Component {
                             {this.state.products.map((ele) => {
                                 return (
                                     <div className={styles.perCard} key={ele.id}>
-                                        <Card title={ele.title} cardId={ele.id} onAddToCart={(event) => this.onAddToCart(event, ele.id)}/>
+                                        <Card title={ele.title} cardId={ele.id} onAddToCart={(event) => this.onAddToCart(event, ele.id)} onAddToWishlist={(event) => this.onAddToWishlist(event, ele.id)}/>
                                     </div>
                                 )
                             })}
@@ -139,9 +165,6 @@ class Products extends Component {
         }
         return (
             <section>
-                <div className={styles.searchBar}>
-                    <label style={{ fontWeight: "bold", fontSize: "1.2rem", verticalAlign: "middle" }}>Search - </label><input type="text" className={styles.search}></input>
-                </div>
                 <h1 style={{textAlign:"center"}}>Products</h1>
                 <div className={styles.filter}>
                     <label>Filter - </label><input type="checkbox" name="titleFilter" checked={this.state.filter} onChange={(event) => this.onCheckChanged(event)} /> Title Name

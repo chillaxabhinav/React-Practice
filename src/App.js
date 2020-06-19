@@ -4,6 +4,7 @@ import Nav from './components/Navigation/navigation';
 import Products from './components/Products/products';
 import Product_Detail from './components/Product_Detail/product_detail';
 import Cart from './components/Cart/cart';
+import Wishlist from './components/Wishlist/wishlist';
 
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 
@@ -15,6 +16,7 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={Products}></Route>
                     <Route path="/cart" exact component={Cart}></Route>
+                    <Route path="/wishlist" exact component={Wishlist}></Route>
                     <Route path="/:id" exact component={Product_Detail}></Route>
 				</Switch>
                 <button style={{

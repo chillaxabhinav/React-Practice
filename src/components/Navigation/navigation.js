@@ -7,9 +7,9 @@ const Nav = (props) => {
     return (
         <section>
             <nav className={styles.mynav}>
-                <h1><Link to="/">Platform</Link></h1>
+                <h1><Link to="/">Shop</Link></h1>
                 <ul>
-                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/wishlist">Wishlist</Link></li>
                 </ul>
             </nav>
         </section>

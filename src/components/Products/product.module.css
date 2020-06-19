@@ -6,13 +6,6 @@
     vertical-align: middle;
 }
 
-.searchBar { 
-    width : 100%;
-    padding : 1rem 6rem;
-    text-align: center;
-}
-
-
 .perCard {
     display: inline-block;
     width : 30%;

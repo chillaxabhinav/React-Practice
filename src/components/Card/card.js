@@ -9,6 +9,7 @@ const Card = (props) => {
                 <div style={{ textAlign: "center", marginBottom: "6rem", fontSize: "1.5rem", fontWeight: "lighter" }}>{props.title}</div>
                 <div className={styles.buttonParent}>
                     <button className={styles.button} onClick={props.onAddToCart}>Add to Cart</button>
+                    <button className={styles.button} onClick={props.onAddToWishlist}>Add to Wislist</button>
                     <Link to={`/${props.cardId}`}><button className={styles.button} onClick={props.onAddToCart}>Item Details</button></Link>
                 </div>
             </div>
