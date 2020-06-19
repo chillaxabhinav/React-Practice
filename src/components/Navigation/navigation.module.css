@@ -19,13 +19,7 @@
     list-style: none;
     display: inline-block;
     vertical-align: middle;
-    margin-left : 70vw;
-}
-
-.mynav ul li {
-    position: relative;
-    display: inline-block;
-    margin-left : 2rem;
+    margin-left : 85%;
 }
 
 .mynav ul li a{
